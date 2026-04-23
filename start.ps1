@@ -1,0 +1,1 @@
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd C:\Users\hp\Desktop\blog website; npm run dev; Start-Sleep 5; Start-Process http://localhost:3000" -Verb RunAs
