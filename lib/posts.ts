@@ -14,6 +14,7 @@ export interface PostMeta {
   category: string
   readingTime: string
   tags?: string[]
+  author?: string
 }
 
 export interface Post extends PostMeta {
@@ -40,9 +41,10 @@ export function getAllPosts(): PostMeta[] {
         title: data.title,
         excerpt: data.excerpt,
         date: String(data.date),
-        category: data.category,
+        category: data.category || 'General',
         readingTime: stats.text,
         tags: data.tags || [],
+        author: data.author || 'Anonymous',
       }
     })
 

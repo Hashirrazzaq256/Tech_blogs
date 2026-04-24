@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Clock, ArrowLeft, Calendar, Tag } from 'lucide-react'
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/posts'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 export const revalidate = 60
 
@@ -89,10 +90,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       <section className="mx-auto max-w-[680px] px-6 pb-16">
-        <div className="prose">
-          <p className="font-serif text-lg leading-7 text-foreground-secondary">
-            Full content rendering coming soon. The MDX integration is being optimized for production.
-          </p>
+        <div className="prose prose-invert max-w-none">
+          <MDXRemote source={post.content} />
         </div>
       </section>
 

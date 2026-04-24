@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { subscribeToNewsletter } from '@/lib/newsletter'
 import { cn } from '@/lib/utils'
 
 interface NewsletterFormProps {
@@ -25,17 +24,29 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
     setLoading(true)
     setStatus('idle')
 
-    const result = await subscribeToNewsletter(email)
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
 
-    setLoading(false)
+      const data = await response.json()
 
-    if (result.success) {
-      setStatus('success')
-      setMessage('Thanks for subscribing!')
-      setEmail('')
-    } else {
+      setLoading(false)
+
+      if (data.success) {
+        setStatus('success')
+        setMessage(data.message || 'Thanks for subscribing!')
+        setEmail('')
+      } else {
+        setStatus('error')
+        setMessage(data.error || 'Something went wrong')
+      }
+    } catch {
+      setLoading(false)
       setStatus('error')
-      setMessage(result.error || 'Something went wrong')
+      setMessage('Something went wrong. Please try again.')
     }
   }
 
