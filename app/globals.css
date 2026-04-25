@@ -83,14 +83,17 @@
     @apply font-mono text-sm bg-surface px-1.5 py-0.5 rounded;
   }
 
-  .prose pre {
-    @apply bg-surface p-4 rounded-lg overflow-x-auto mb-6 text-sm;
-  }
+ .prose pre {
+  @apply rounded-lg overflow-x-auto mb-6 text-sm p-0;
+  background: transparent !important;
+}
 
-  .prose pre code {
-    @apply bg-transparent p-0;
-  }
-
+.prose pre code {
+  @apply bg-transparent p-0;
+  color: inherit !important;
+  font-size: inherit !important;
+}
+  
   .prose hr {
     @apply border-border my-12;
   }
