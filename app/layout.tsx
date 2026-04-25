@@ -6,7 +6,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Industrial Blog',
+    default: 'Architect Vibe',
     template: '%s | Industrial Blog',
   },
   description: 'A minimal, high-performance blog platform.',
