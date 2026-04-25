@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
 
 const components = {
-  pre:CodeBlock, 
+  pre: CodeBlock,
 }
 
 export const revalidate = 60
@@ -99,27 +99,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="mx-auto max-w-[680px] px-6 pb-16">
         <div className="prose prose-invert prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-pre:p-0 prose-pre:bg-transparent prose-code:before:content-none prose-code:after:content-none">
           <MDXRemote
-  source={post.content}
-  options={{
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        [
-          rehypePrettyCode,
-          {
-            theme: {
-              dark: 'one-dark-pro',
-              light: 'github-light',
-            },
-            keepBackground: true,
-            defaultLang: 'plaintext',
-          },
-        ],
-      ],
-    },
-  }}
-  components={components}
-/>
+            source={post.content}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
+                  [
+                    rehypePrettyCode,
+                    {
+                      theme: 'github-dark',
+                      keepBackground: false,
+                      defaultLang: 'python',
+                    },
+                  ],
+                ],
+              },
+            }}
+            components={components}
+          />
         </div>
       </section>
 
