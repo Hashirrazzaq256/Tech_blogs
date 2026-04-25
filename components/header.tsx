@@ -26,7 +26,7 @@ export function Header() {
             href="/"
             className="font-sans text-xl font-semibold tracking-tight text-foreground hover:text-accent transition-colors"
           >
-            Industrial
+            Architech Vibe
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
