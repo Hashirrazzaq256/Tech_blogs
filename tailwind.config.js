@@ -22,7 +22,7 @@ module.exports = {
       fontFamily: {
         sans: ['Geist Sans', 'Inter', 'system-ui', 'sans-serif'],
         serif: ['Newsreader', 'Georgia', 'serif'],
-        mono: ['Geist Mono', 'Consolas', 'monospace'],
+        mono: ['JetBrains Mono', 'Consolas', 'monospace'],
       },
       typography: {
         DEFAULT: {
