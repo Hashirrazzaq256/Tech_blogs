@@ -98,28 +98,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       <section className="mx-auto max-w-[680px] px-6 pb-16">
-        <MDXRemote
-          source={post.content}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
-              rehypePlugins: [
-                [
-                  rehypePrettyCode,
-                  {
-                    theme: {
-                      dark: 'one-dark-pro',
-                      light: 'github-light',
+        <div className="prose prose-invert prose-lg max-w-none prose-headings:font-sans prose-headings:font-bold prose-pre:p-0 prose-pre:bg-transparent prose-code:before:content-none prose-code:after:content-none">
+          <MDXRemote
+            source={post.content}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
+                  [
+                    rehypePrettyCode,
+                    {
+                      theme: {
+                        dark: 'one-dark-pro',
+                        light: 'github-light',
+                      },
+                      keepBackground: true,
+                      defaultLang: 'plaintext',
                     },
-                    keepBackground: true,
-                    defaultLang: 'plaintext',
-                  },
+                  ],
                 ],
-              ],
-            },
-          }}
-          components={components}
-        />
+              },
+            }}
+            components={components}
+          />
+        </div>
       </section>
 
       {(prevPost || nextPost) && (
