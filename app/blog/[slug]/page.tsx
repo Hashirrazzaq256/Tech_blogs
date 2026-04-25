@@ -2,13 +2,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Clock, ArrowLeft, Calendar, Tag } from 'lucide-react'
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/posts'
-import { getMDXSource } from '@/lib/mdx'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import dynamic from 'next/dynamic'
-
-const CodeBlock = dynamic(() => import('@/components/mdx-code-block').then(mod => mod.default), {
-  ssr: false,
-})
+import CodeBlock from '@/components/mdx-code-block'
+import remarkGfm from 'remark-gfm'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 const components = {
   pre: CodeBlock,
@@ -61,8 +58,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
   const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
 
-  const mdxSource = await getMDXSource(post.content)
-
   return (
     <article className="animate-fade-in">
       <header className="mx-auto max-w-[680px] px-6 py-16 md:py-24">
@@ -103,7 +98,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </section>
 
       <section className="mx-auto max-w-[680px] px-6 pb-16">
-        <MDXRemote source={mdxSource} components={components} />
+        <MDXRemote
+          source={post.content}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+              rehypePlugins: [
+                [
+                  rehypePrettyCode,
+                  {
+                    theme: {
+                      dark: 'one-dark-pro',
+                      light: 'github-light',
+                    },
+                    keepBackground: true,
+                    defaultLang: 'plaintext',
+                  },
+                ],
+              ],
+            },
+          }}
+          components={components}
+        />
       </section>
 
       {(prevPost || nextPost) && (
