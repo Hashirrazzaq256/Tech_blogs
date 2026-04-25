@@ -3,11 +3,13 @@ import Link from 'next/link'
 import { Clock, ArrowLeft, Calendar, Tag } from 'lucide-react'
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/posts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-// import CodeBlock from '@/components/mdx-code-block'
+import CodeBlock from '@/components/mdx-code-block'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
 
-const components = {}
+const components = {
+  pre:CodeBlock, 
+}
 
 export const revalidate = 60
 
