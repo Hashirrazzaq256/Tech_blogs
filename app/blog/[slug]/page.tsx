@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import CodeBlock from '@/components/mdx-code-block'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
+import ReadingProgress from '@/components/reading-progress'
 
 const components = {
   pre: CodeBlock,
@@ -59,6 +60,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="animate-fade-in">
+      <ReadingProgress />
       <header className="mx-auto max-w-[680px] px-6 py-16 md:py-24">
         <Link
           href="/blog"
