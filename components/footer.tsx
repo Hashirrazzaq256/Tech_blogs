@@ -19,7 +19,7 @@ export function Footer() {
               href="/"
               className="font-sans text-sm font-semibold text-foreground hover:text-accent transition-colors"
             >
-              Industrial
+              Architect Vibe
             </Link>
             <span className="text-foreground-muted text-sm">
               {currentYear}
